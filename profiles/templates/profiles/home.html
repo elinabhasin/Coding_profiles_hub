@@ -1,0 +1,29 @@
+{% extends 'profiles/base.html' %}
+{% load static %}
+
+{% block title %}Welcome!{% endblock %}
+
+{% block content %}
+    <section class="hero-section">
+        <div class="hero-content">
+            <h1 class="hero-title">Welcome to the Coding Profiles Hub!</h1>
+            <div class="hero-box">
+                <p>
+                    This is a simple platform designed to showcase and connect developers.
+                    You can explore profiles of various users, see their coding handles,
+                    and even submit your own profile to be part of this growing community.
+                    It's a great way to discover new talent and share your own journey!
+                </p>
+            </div>
+            <div class="hero-buttons">
+                <a href="{% url 'user_list' %}" class="btn btn-primary">
+                    <i class="fas fa-users"></i> View Users
+                </a>
+                <a href="{% url 'submit_profile' %}" class="btn btn-secondary">
+                    <i class="fas fa-user-plus"></i> Submit Profile
+                </a>
+            </div>
+        </div>
+    </section>
+{% endblock %}
+

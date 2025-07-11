@@ -1,0 +1,39 @@
+{% extends 'profiles/base.html' %}
+{% load static %}
+
+{% block title %}All User Profiles{% endblock %}
+
+{% block content %}
+    <h1 class="page-title">All Developer Profiles</h1>
+
+    {% if users %}
+        <div class="user-cards-grid">
+            {% for user in users %}
+                <div class="user-card">
+                    <div class="card-header">
+                        <i class="fas fa-user-circle profile-icon"></i>
+                        <h2 class="card-title">{{ user.name }}</h2>
+                    </div>
+                    <div class="card-body">
+                        <p><i class="fas fa-envelope"></i> <strong>Email:</strong> {{ user.email }}</p>
+                        {% if user.github %}
+                            <p><i class="fab fa-github"></i> <strong>GitHub:</strong> <a href="{{ user.github }}" target="_blank">{{ user.github|truncatechars:30 }}</a></p>
+                        {% endif %}
+                        {% if user.leetcode %}
+                            <p><i class="fas fa-code"></i> <strong>LeetCode:</strong> <a href="{{ user.leetcode }}" target="_blank">{{ user.leetcode|truncatechars:30 }}</a></p>
+                        {% endif %}
+                        {% if user.codeforces %}
+                            <p><i class="fas fa-laptop-code"></i> <strong>Codeforces:</strong> <a href="{{ user.codeforces }}" target="_blank">{{ user.codeforces|truncatechars:30 }}</a></p>
+                        {% endif %}
+                    </div>
+                    <div class="card-footer">
+                        <small>Joined: {{ user.created_at|date:"M d, Y" }}</small>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    {% else %}
+        <p class="no-users-message">No user profiles found yet. Be the first to <a href="{% url 'submit_profile' %}">submit one</a>!</p>
+    {% endif %}
+{% endblock %}
+
